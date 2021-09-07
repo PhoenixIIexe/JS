@@ -1,150 +1,86 @@
 /*
-    1. Дан код:
-    var a = 1, b = 1, c, d;
-    c = ++a; alert(c);           // 2 ++a - преинкрементом значит значение увеличивается на 1
-    d = b++; alert(d);           // 1 b++ - постинкрементом значит значение 1 занесется в переменную с, а потом b увеличивается на 1
-    c = (2+ ++a); alert(c);      // 5 к 2 прибавляем а увеличенное на 1 и получаем 5
-    d = (2+ b++); alert(d);      // 4 к 2 прибавляем значение b и получаем 4, а потом b увеличивается на 1
-    alert(a);                    // 3 а увеличивали два раза на 1, при начальном значение 1, значит получим 3
-    alert(b);                    // 3 b увеличивали два раза на 1, при начальном значение 1, значит получим 3
+    1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100.
 */
-
-/*
-    2. Чему будет равен x в примере ниже?
-    var a = 2;
-    var x = 1 + (a *= 2);
-
-    Ответ: 5
-*/
-
-/*
-    3. Объявить две целочисленные переменные a и b и задать им произвольные начальные значения.
-    Затем написать скрипт, который работает по следующему принципу:
-    если a и b положительные, вывести их разность;
-    если а и b отрицательные, вывести их произведение;
-    если а и b разных знаков, вывести их сумму; ноль можно считать положительным числом.
-*/
-
-let a = 1, b = 0;
-
-if (a >= 0 && b >= 0)
-    console.log(a - b);
-else if (a < 0 && b < 0)
-    console.log(a * b);
-else if (a >= 0 && b < 0 || a < 0 && b >= 0)
-    console.log(a + b);
-
-/*
-    4. Присвоить переменной а значение в промежутке [0..15].
-    С помощью оператора switch организовать вывод чисел от a до 15.
-*/
-console.log("\n");
-
-const MIN = 0, MAX = 15;
-a = Math.floor(Math.random() * (MAX - MIN + 1)) + MIN
-
-switch (a) {
-    case 1:
-        console.log(1);
-    case 2:
-        console.log(2);
-    case 3:
-        console.log(3);
-    case 4:
-        console.log(4);
-    case 5:
-        console.log(5);
-    case 6:
-        console.log(6);
-    case 7:
-        console.log(7);
-    case 8:
-        console.log(8);
-    case 9:
-        console.log(9);
-    case 10:
-        console.log(10);
-    case 11:
-        console.log(11);
-    case 12:
-        console.log(12);
-    case 13:
-        console.log(13);
-    case 14:
-        console.log(14);
-    case 15:
-        console.log(15);
-}
-
-/*
-    5. Реализовать основные 4 арифметические операции в виде функций с двумя параметрами.
-    Обязательно использовать оператор return.
-*/
-
-function summation(num_1, num_2) {
-    return num_1 + num_2;
-}
-
-function subtraction(num_1, num_2) {
-    return num_1 - num_2;
-}
-
-function multiplication(num_1, num_2) {
-    return num_1 * num_2;
-}
-
-function division(num_1, num_2) {
-    return num_1 / num_2;
-}
-
-/*
-    6. Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation),
-    где arg1, arg2 – значения аргументов, operation – строка с названием операции.
-    В зависимости от переданного значения операции выполнить одну из арифметических операций (использовать функции из пункта 3) и вернуть полученное значение (использовать switch).
-*/
-
-function mathOperation(arg1, arg2, operation) {
-    let meaning;
-
-    switch (operation) {
-        case "+":
-            meaning = summation(arg1, arg2);
-
+console.log('_________1 задание_________');
+let nums = 0;
+while (nums <= 100) {
+    let check = true;
+    for (let i = 2; i < nums; ++i) {
+        if (nums % i === 0) {
+            check = false;
             break;
-        case "-":
-            meaning = subtraction(arg1, arg2);
+        }
+    }
+    if (check)
+        console.log(nums);
+    ++nums;
+}
 
-            break;
-        case "*":
-            meaning = multiplication(arg1, arg2);
+/*
+    2. С этого урока начинаем работать с функционалом интернет-магазина. Предположим, есть сущность корзины.
+    Нужно реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров.
+    3. Товары в корзине хранятся в массиве. Задачи:
+    a) Организовать такой массив для хранения товаров в корзине;
+    b) Организовать функцию countBasketPrice, которая будет считать стоимость корзины.
+*/
+function getNumber(min, max) {
+    let number = parseInt(Math.random() * (max - min) + min);
+    return number;
+}
 
-            break;
-        case "/":
-            meaning = division(arg1, arg2);
+console.log('_________2 задание_________');
+let basket = [
+    {
+        product: "pen",
+        price: getNumber(50, 100)
+    },
+    {
+        product: "pencil",
+        price: getNumber(50, 100)
+    },
+    {
+        product: "eraser",
+        price: getNumber(50, 100)
+    },
+    {
+        product: "ruler",
+        price: getNumber(50, 100)
+    }
+];
+let basketPrice = 0;
+for (let prod of basket) {
+    basketPrice += prod.price;
+    console.log("Товар: " + prod.product + " стоит: " + prod.price);
+}
 
-            break;
+console.log("Стоимость корзины: " + basketPrice);
+
+console.log('_________3 задание_________');
+function countBasketPrice(basket) {
+    let basketPrice = 0;
+    for (let prod of basket) {
+        basketPrice += prod.price;
     }
 
-    return meaning;
+    return basketPrice;
 }
 
-console.log(mathOperation(2, 2, "*"));
-
+console.log("Стоимость корзины: " + countBasketPrice(basket));
 /*
-    7. *Сравнить null и 0. Попробуйте объяснить результат.
-    null используется чтобы указать на отсутсвие вообще какого-либо значения, а 0 это уже конкретное значение
+    4.*Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла. Выглядеть это должно так:
 */
 
+console.log('_________4 задание_________');
+for (let i = 0; i <= 9; console.log(i++)) { }
+
 /*
-    8. *С помощью рекурсии организовать функцию возведения числа в степень.
-    Формат: function power(val, pow), где val – заданное число, pow – степень.
+    5. *Нарисовать пирамиду с помощью console.log, как показано на рисунке,
+    только у вашей пирамиды должно быть 20 рядов, а не 5:
 */
 
-function power(val, pow) {
-    if (pow == 1)
-        return val;
-    else
-        return val * power(val, pow - 1);
+console.log('_________5 задание_________');
+let str = 'x';
+for (let i = 0; i <= 20; ++i) {
+    console.log(str)
+    str += "x";
 }
-
-console.log(power(18, 4));
