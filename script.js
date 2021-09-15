@@ -1,86 +1,86 @@
 /*
-    1. С помощью цикла while вывести все простые числа в промежутке от 0 до 100.
+    1. Написать функцию, преобразующую число в объект. 
+    Передавая на вход число от 0 до 999, мы должны получить на выходе объект, 
+    в котором в соответствующих свойствах описаны единицы, десятки и сотни. 
+    Например, для числа 245 мы должны получить следующий объект: 
+        {‘единицы’: 5, ‘десятки’: 4, ‘сотни’: 2}. 
+    Если число превышает 999, необходимо выдать соответствующее сообщение с помощью console.log и вернуть пустой объект.
 */
+
 console.log('_________1 задание_________');
-let nums = 0;
-while (nums <= 100) {
-    let check = true;
-    for (let i = 2; i < nums; ++i) {
-        if (nums % i === 0) {
-            check = false;
-            break;
-        }
-    }
-    if (check)
-        console.log(nums);
-    ++nums;
+let num = 1000;
+let categories = {};
+
+if (num < 10) {
+    categories['единицы'] = num % 10;
+    categories['десятки'] = 0
+    categories['сотни'] = 0
 }
+else if (num < 100) {
+    categories['единицы'] = num % 10;
+    categories['десятки'] = Math.floor(num / 10) % 10;
+    categories['сотни'] = 0
+}
+else if (num < 1000) {
+    categories['единицы'] = num % 10;
+    categories['десятки'] = Math.floor(num / 10) % 10;
+    categories['сотни'] = Math.floor(num / 100) % 10;
+}
+else
+    console.log("Число превышает 999!")
+
+console.log(categories);
 
 /*
-    2. С этого урока начинаем работать с функционалом интернет-магазина. Предположим, есть сущность корзины.
-    Нужно реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров.
-    3. Товары в корзине хранятся в массиве. Задачи:
-    a) Организовать такой массив для хранения товаров в корзине;
-    b) Организовать функцию countBasketPrice, которая будет считать стоимость корзины.
+    2. Продолжить работу с интернет-магазином:
+    В прошлом домашнем задании вы реализовали корзину на базе массивов.
+    Какими объектами можно заменить их элементы?
+    Реализуйте такие объекты.
+    Перенести функционал подсчета корзины на объектно-ориентированную базу.
 */
+
+console.log('\n_________2 задание_________');
+
 function getNumber(min, max) {
     let number = parseInt(Math.random() * (max - min) + min);
     return number;
 }
 
-console.log('_________2 задание_________');
-let basket = [
-    {
-        product: "pen",
-        price: getNumber(50, 100)
-    },
-    {
-        product: "pencil",
-        price: getNumber(50, 100)
-    },
-    {
-        product: "eraser",
-        price: getNumber(50, 100)
-    },
-    {
-        product: "ruler",
-        price: getNumber(50, 100)
-    }
-];
-let basketPrice = 0;
-for (let prod of basket) {
-    basketPrice += prod.price;
-    console.log("Товар: " + prod.product + " стоит: " + prod.price);
+function basket(product = "", price = 0) {
+    let point = {};
+
+    point['product'] = product;
+    point['price'] = price;
+
+    basketData[basketData.length] = point;
+    this.basketData = basketData;
+
+    this.basketPricePrint = basketPrice;
 }
 
-console.log("Стоимость корзины: " + basketPrice);
-
-console.log('_________3 задание_________');
-function countBasketPrice(basket) {
-    let basketPrice = 0;
-    for (let prod of basket) {
-        basketPrice += prod.price;
-    }
-
-    return basketPrice;
+function basketPrice() {
+    let sumBasketPrice = 0;
+    for (item of this.basketData)
+        sumBasketPrice += item.price;
+    return sumBasketPrice;
 }
 
-console.log("Стоимость корзины: " + countBasketPrice(basket));
-/*
-    4.*Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла. Выглядеть это должно так:
-*/
+var basketData = [];
 
-console.log('_________4 задание_________');
-for (let i = 0; i <= 9; console.log(i++)) { }
+new basket("pencil", getNumber(50, 100));
+new basket("eraser", getNumber(50, 100));
+new basket("ruler", getNumber(50, 100));
+let last_product = new basket("pen", getNumber(50, 100));
+
+console.log("Сумма вашей корзины:", last_product.basketPricePrint());
 
 /*
-    5. *Нарисовать пирамиду с помощью console.log, как показано на рисунке,
-    только у вашей пирамиды должно быть 20 рядов, а не 5:
+    3. * Подумать над глобальными сущностями. 
+    К примеру, сущность «Продукт» в интернет-магазине актуальна не только для корзины, но и для каталога. 
+    Стремиться нужно к тому, чтобы объект «Продукт» имел единую структуру для различных модулей сайта, 
+    но в разных местах давал возможность вызывать разные методы.
 */
 
-console.log('_________5 задание_________');
-let str = 'x';
-for (let i = 0; i <= 20; ++i) {
-    console.log(str)
-    str += "x";
-}
+console.log('\n_________3 задание_________');
+
+console.log('Подумал :)')
